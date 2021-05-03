@@ -1,13 +1,13 @@
 <template>
-  <div id="entire_dashboard">
-      <h2>This is the dashboard</h2>
+  <div id="entire_notfound">
+      <h2>Page notfound!</h2>
   </div>
 </template>
 
 <script>
 
 export default {
-    name: 'Dashboard',
+    name: 'Notfound',
 
 }
 
