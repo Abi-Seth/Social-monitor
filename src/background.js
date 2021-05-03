@@ -83,3 +83,5 @@ if (isDevelopment) {
     })
   }
 }
+
+export default app

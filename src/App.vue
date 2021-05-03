@@ -18,6 +18,6 @@ export default {
 
 <style lang="scss"> 
     #entire_app {
-        
+        background-color: green;
     }
 </style>

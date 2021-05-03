@@ -8,14 +8,51 @@
             <input type="text" placeholder="Search social app">
         </div>
         <div class="exit_side">
-
+            <div class="min">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="2" viewBox="0 0 12 2">
+                    <line id="Line_2" data-name="Line 2" x2="12" transform="translate(0 1)" fill="none" stroke="#fff" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="exp">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+                    <g id="Rectangle_2" data-name="Rectangle 2" fill="none" stroke="#fff" stroke-width="2">
+                        <rect width="10" height="10" stroke="none"/>
+                        <rect x="1" y="1" width="8" height="8" fill="none"/>
+                    </g>
+                </svg>
+            </div>
+            <div class="ext" @click="closeApp">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9.899" height="9.899" viewBox="0 0 9.899 9.899">
+                    <line id="Line_2" data-name="Line 2" x2="12" transform="translate(9.192 9.192) rotate(-135)" fill="none" stroke="#fff" stroke-width="2"/>
+                    <line id="Line_3" data-name="Line 3" x2="12" transform="translate(9.192 0.707) rotate(135)" fill="none" stroke="#fff" stroke-width="2"/>
+                </svg>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+
+import { reactive } from 'vue'
+// import { ipcRenderer } from 'electron'
+
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+
+    setup() {
+        const state = reactive({
+
+        })
+
+        // function closeApp() {
+        //     ipcRenderer.send('closeapp')
+        // }
+
+        return {
+            state,
+            // closeApp
+        }
+    }
 }
 </script>
 
@@ -51,7 +88,7 @@ export default {
         }
 
         .search_side {
-            width: 60%;
+            width: 65%;
             height: 100%;
             display: flex;
             align-items: center;
@@ -74,7 +111,41 @@ export default {
         }
 
         .exit_side {
-            
+            width: 15%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            // background-color: red;
+
+            .min, .exp, .ext {
+                -webkit-app-region: no-drag;
+                background: transparent;
+                width: 2em;
+                height: 2em;
+                float: right;
+                margin-left: 2%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+
+            .min:hover, .exp:hover {
+                background-color: $darkMain;
+                
+            }
+
+            .ext:hover {
+                background-color: $redMain;
+            }
+
+            .min svg, .exp svg, .ext svg {
+                opacity: 60%;
+            }
+
+            .min {
+                margin-left: 28%;
+            }
         }
 
     }
