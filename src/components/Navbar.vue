@@ -34,7 +34,7 @@
 <script>
 
 import { reactive } from 'vue'
-// import { ipcRenderer } from 'electron'
+import { all } from '../renderer.js'
 
 export default {
     name: 'Navbar',
@@ -44,13 +44,13 @@ export default {
 
         })
 
-        // function closeApp() {
-        //     ipcRenderer.send('closeapp')
-        // }
+        function closeApp() {
+            all()
+        }
 
         return {
             state,
-            // closeApp
+            closeApp
         }
     }
 }
