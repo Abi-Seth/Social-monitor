@@ -1,6 +1,6 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS_DEVTOOLS } from 'electron-devtools-installer'
 const isDevelopment = process.env.NODE_ENV !== 'production'
@@ -13,26 +13,45 @@ protocol.registerSchemesAsPrivileged([
 async function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 720,
+    minHeight: 600,
+    minWidth: 300,
+    frame: false,
+    titleBarStyle: 'hidden',
+    show: false,
+    transparent: true,
     webPreferences: {
       
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
-      nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
-    }
+      nodeIntegration: true,
+      contextIsolation: true
+    },
   })
+
+  win.once('ready-to-show', win.show)
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
-    if (!process.env.IS_TEST) win.webContents.openDevTools()
+
+    // if (!process.env.IS_TEST) win.webContents.openDevTools()
+    if (process.env.IS_TEST) win.webContents.openDevTools()
   } else {
     createProtocol('app')
     // Load the index.html when not in development
     win.loadURL('app://./index.html')
   }
 }
+
+app.on('browser-window-focus', () => {
+  console.log('Window focused');
+})
+
+app.on('browser-window-blur', () => {
+  console.log('Window unfocused');
+})
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
@@ -43,6 +62,8 @@ app.on('window-all-closed', () => {
   }
 })
 
+
+
 app.on('activate', () => {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
@@ -52,6 +73,7 @@ app.on('activate', () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
+
 app.on('ready', async () => {
   if (isDevelopment && !process.env.IS_TEST) {
     // Install Vue Devtools
@@ -78,3 +100,7 @@ if (isDevelopment) {
     })
   }
 }
+
+ipcMain.on('closewin', (event, arg) => {
+  alert('Working')
+})

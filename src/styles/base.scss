@@ -1,6 +1,17 @@
 @import 'imports';
 @import 'colors';
 
-body {
-    background-color: red;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body {
+    background-color: $darkMain;
+
+    #entire_app {
+        width: 100%;
+    }
+}
+
