@@ -2,7 +2,8 @@
     <div id="entire_app" style="-webkit-app-region: drag">
         <navbar/>       
         <router-view />
-        <a href="https://twitter.com/home" target="_blank">Twitter</a>
+        <!-- <a href="https://twitter.com/home" target="_blank">Twitter</a> -->
+        <iframe src="https://twitter.com/home" frameborder="0" width="600" height="500"></iframe>
     </div>
 </template>
 
