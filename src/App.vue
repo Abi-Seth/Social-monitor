@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss"> 
-    #entire_app {
-        background-color: green;
-    }
+  #entire_app {
+      background-color: green;
+  }
 </style>
