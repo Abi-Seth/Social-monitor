@@ -32,7 +32,6 @@
 </template>
 
 <script>
-
 import { reactive } from 'vue'
 import { all } from '../renderer.js'
 
